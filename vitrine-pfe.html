@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapports de Stage de Fin d'Études (DUT - ER) 2025–2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Jost', sans-serif; background: #2a2a2a; color: #f0ede8; min-height: 100vh; }
+
+/* HEADER */
+header { text-align: center; padding: 52px 20px 40px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.univ-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(1rem,3vw,1.2rem); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+.univ-line { width: 36px; height: 1px; background: rgba(255,255,255,0.2); margin: 10px auto; }
+.univ-sub { font-size: clamp(0.65rem,2vw,0.75rem); letter-spacing: 1.5px; color: rgba(255,255,255,0.4); text-transform: uppercase; line-height: 2; }
+.main-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,6vw,4rem); font-weight: 700; line-height: 1.1; margin: 28px 0 0; }
+.main-title em { display: block; font-style: italic; font-weight: 400; font-size: 0.42em; letter-spacing: 4px; text-transform: uppercase; opacity: 0.5; margin-bottom: 4px; font-family: 'Jost', sans-serif; }
+.year-pill { display: inline-block; margin-top: 18px; font-size: 0.7rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.4); border: 1px solid rgba(255,255,255,0.12); padding: 5px 18px; border-radius: 2px; }
+.hint { margin-top: 14px; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+/* JURY NAV */
+.jury-nav { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; padding: 32px 20px 0; }
+.jury-nav a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 28px; border-radius: 4px;
+  font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  color: #111;
+}
+.jury-nav a:hover { opacity: 0.85; transform: translateY(-2px); }
+.j1-btn { background: #85C1E9; }
+.j2-btn { background: #82E0AA; }
+.j3-btn { background: #F8C471; }
+
+/* SEARCH */
+.search-wrap { max-width: 440px; margin: 28px auto 12px; padding: 0 16px; }
+.search-input { width: 100%; background: #333; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; padding: 13px 18px; color: #f0ede8; font-family: 'Jost', sans-serif; font-size: 0.88rem; outline: none; transition: border-color 0.2s; }
+.search-input:focus { border-color: rgba(255,255,255,0.3); }
+.search-input::placeholder { color: rgba(255,255,255,0.25); }
+.count-line { text-align: center; font-size: 0.7rem; color: rgba(255,255,255,0.3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.count-line strong { color: #f0ede8; }
+
+/* JURY SECTION */
+.jury-section { max-width: 1380px; margin: 0 auto; padding: 0 16px; }
+.jury-header {
+  display: flex; align-items: center; gap: 16px;
+  padding: 28px 0 20px;
+  border-bottom: 2px solid;
+  margin-bottom: 20px;
+}
+.jury-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem,4vw,2rem); font-weight: 700; letter-spacing: 0.5px; }
+.jury-header .salle { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.5; margin-top: 4px; }
+.jury-count-badge { margin-left: auto; font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; padding: 5px 14px; border-radius: 20px; font-weight: 600; color: #111; }
+
+/* GRID */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; margin-bottom: 48px; }
+
+/* CARD */
+.card { background: #333; border-radius: 6px; padding: 22px 20px 18px 24px; cursor: pointer; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); transition: background 0.2s; display: block; width: 100%; text-align: left; }
+.card:hover { background: #3a3a3a; }
+.card:active { opacity: 0.85; }
+.card-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 6px 0 0 6px; }
+.card-top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.passage-num { font-size: 0.62rem; letter-spacing: 2px; color: rgba(255,255,255,0.3); text-transform: uppercase; }
+.encadrant-badge { font-size: 0.6rem; letter-spacing: 0.5px; padding: 3px 8px; border-radius: 10px; color: #111; font-weight: 600; white-space: nowrap; max-width: 160px; overflow: hidden; text-overflow: ellipsis; }
+.card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.avatar { width: 40px; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 0.95rem; color: #111; flex-shrink: 0; }
+.card-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; color: #f0ede8; line-height: 1.2; }
+.card-num-insc { font-size: 0.65rem; margin-top: 3px; letter-spacing: 1px; }
+.pfe-label { font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 6px; }
+.pfe-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.88rem; color: rgba(240,237,232,0.65); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.06); }
+.foot-hint { font-size: 0.65rem; color: rgba(255,255,255,0.25); }
+.qr-dot { width: 26px; height: 26px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; font-weight: 700; color: #111; }
+
+/* MODAL */
+.modal-overlay { position: fixed; inset: 0; z-index: 999; display: none; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,0.88); }
+.modal-overlay.open { display: flex; }
+.modal { background: #333; border-radius: 6px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; border: 1px solid rgba(255,255,255,0.1); }
+.modal-top-bar { height: 3px; width: 100%; }
+.modal-head { padding: 26px 26px 20px; border-bottom: 1px solid rgba(255,255,255,0.07); display: flex; gap: 14px; align-items: center; position: relative; }
+.modal-close { position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; color: rgba(255,255,255,0.5); font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: sans-serif; }
+.modal-close:hover { color: #fff; }
+.m-avatar { width: 50px; height: 50px; flex-shrink: 0; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem; color: #111; }
+.m-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: #f0ede8; }
+.m-meta { font-size: 0.68rem; margin-top: 3px; letter-spacing: 0.5px; }
+.modal-body { padding: 22px 26px 28px; }
+.mlabel { font-size: 0.58rem; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+.m-pfe { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: rgba(240,237,232,0.8); line-height: 1.65; border-left: 2px solid; padding: 10px 14px; background: rgba(255,255,255,0.03); border-radius: 0 3px 3px 0; margin-bottom: 8px; }
+.m-lieu { font-size: 0.75rem; color: rgba(255,255,255,0.35); margin-bottom: 24px; font-style: italic; }
+.qr-section { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.qr-frame { padding: 14px; background: #fff; border-radius: 4px; border: 2px solid; }
+.drive-btn { display: inline-flex; align-items: center; gap: 8px; color: #111; font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; border-radius: 3px; padding: 11px 26px; text-decoration: none; transition: opacity 0.2s; }
+.drive-btn:hover { opacity: 0.85; }
+.qr-note { font-size: 0.68rem; color: rgba(255,255,255,0.3); font-style: italic; }
+
+footer { text-align: center; padding: 28px 20px; border-top: 1px solid rgba(255,255,255,0.07); font-size: 0.65rem; color: rgba(255,255,255,0.2); letter-spacing: 1.5px; text-transform: uppercase; line-height: 2; }
+
+@media (max-width: 480px) {
+  header { padding: 36px 16px 28px; }
+  .jury-nav { gap: 8px; padding: 20px 12px 0; }
+  .jury-nav a { padding: 10px 18px; font-size: 0.72rem; }
+  .grid { grid-template-columns: 1fr; gap: 10px; }
+  .card { padding: 16px 14px 14px 18px; }
+  .encadrant-badge { max-width: 120px; }
+}
+.no-results { grid-column: 1/-1; text-align: center; padding: 40px; color: rgba(255,255,255,0.25); font-style: italic; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="univ-name">Université Cadi Ayyad</div>
+    <div class="univ-line"></div>
+    <div class="univ-sub">
+      École Supérieure de Technologie — Essaouira<br>
+      Département Génie de l'Environnement et Énergies Renouvelables<br>
+      Filière DUT Énergies Renouvelables
+    </div>
+  </div>
+  <div class="main-title">
+    <em>Stage de Fin d'Études</em>
+    Rapports de Stage de<br>Fin d'Études (DUT - ER)
+  </div>
+  <div class="year-pill">Promotion 2025 – 2026</div>
+  <div class="hint">Appuyez sur une carte pour accéder au rapport</div>
+</header>
+
+<!-- Navigation Jury -->
+<div class="jury-nav">
+  <a href="#jury1" class="j1-btn">⬡ Jury 1 — Salle 9</a>
+  <a href="#jury2" class="j2-btn">⬡ Jury 2 — Salle 10</a>
+  <a href="#jury3" class="j3-btn">⬡ Jury 3 — Salle 7</a>
+</div>
+
+<!-- Search -->
+<div class="search-wrap">
+  <input class="search-input" type="text" id="searchInput" placeholder="🔍  Nom, prénom, sujet, encadrant…">
+</div>
+<div class="count-line" id="countLine" style="display:none"></div>
+
+<!-- JURY 1 -->
+<div class="jury-section" id="jury1-section">
+  <div id="jury1" class="jury-header" style="border-color:#85C1E9; color:#85C1E9;">
+    <div>
+      <h2>Jury 1</h2>
+      <div class="salle">Salle 9</div>
+    </div>
+    <div class="jury-count-badge" style="background:#85C1E9;">14 étudiants</div>
+  </div>
+  <div class="grid" id="grid-jury1"></div>
+</div>
+
+<!-- JURY 2 -->
+<div class="jury-section" id="jury2-section">
+  <div id="jury2" class="jury-header" style="border-color:#82E0AA; color:#82E0AA;">
+    <div>
+      <h2>Jury 2</h2>
+      <div class="salle">Salle 10</div>
+    </div>
+    <div class="jury-count-badge" style="background:#82E0AA;">14 étudiants</div>
+  </div>
+  <div class="grid" id="grid-jury2"></div>
+</div>
+
+<!-- JURY 3 -->
+<div class="jury-section" id="jury3-section">
+  <div id="jury3" class="jury-header" style="border-color:#F8C471; color:#F8C471;">
+    <div>
+      <h2>Jury 3</h2>
+      <div class="salle">Salle 7</div>
+    </div>
+    <div class="jury-count-badge" style="background:#F8C471;">15 étudiants</div>
+  </div>
+  <div class="grid" id="grid-jury3"></div>
+</div>
+
+<!-- Modal -->
+<div class="modal-overlay" id="overlay">
+  <div class="modal" id="modal">
+    <div class="modal-top-bar" id="mBar"></div>
+    <div class="modal-head">
+      <button class="modal-close" id="closeBtn">✕</button>
+      <div class="m-avatar" id="mAv"></div>
+      <div>
+        <div class="m-name" id="mName"></div>
+        <div class="m-meta" id="mMeta"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="mlabel">Encadrant(e) académique</div>
+      <div style="font-size:0.85rem; color:rgba(240,237,232,0.7); margin-bottom:16px; padding:8px 12px; background:rgba(255,255,255,0.04); border-radius:4px;" id="mEncadrant"></div>
+      <div class="mlabel">Lieu de stage</div>
+      <div class="m-lieu" id="mLieu"></div>
+      <div class="mlabel">Titre du stage</div>
+      <div class="m-pfe" id="mPfe"></div>
+      <div class="mlabel">Accès au rapport</div>
+      <div class="qr-section">
+        <div class="qr-frame" id="qrFrame"><div id="qrTarget"></div></div>
+        <a class="drive-btn" id="mLink" href="#" target="_blank" rel="noopener">↗ Ouvrir le rapport Drive</a>
+        <div class="qr-note">Scannez avec votre smartphone</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Année Universitaire 2025–2026 &nbsp;◆&nbsp; Université Cadi Ayyad<br>
+  École Supérieure de Technologie d'Essaouira &nbsp;◆&nbsp; Tous droits réservés
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+// Encadrants masculins / féminins
+var ENCADRANTS_F = ['Safae Hasnaoui','Fatima Zahra Amatoul','Asma Meskani'];
+
+function titreEncadrant(nom) {
+  for (var i=0; i<ENCADRANTS_F.length; i++) {
+    if (nom.toLowerCase().indexOf(ENCADRANTS_F[i].toLowerCase()) > -1) return 'Encadrante académique';
+  }
+  return 'Encadrant académique';
+}
+
+var JURY = [
+  {
+    id: 'jury1', color: '#85C1E9', salle: 'Salle 9',
+    etudiants: [
+      {ordre:1, num:'22', nom:'ERREGUIG',     prenom:'Fatima Ezzahra',  encadrant:'Prof. Mohammed ER-RAKI',         lieu:'BET AFRI ETUDE',                         titre:"Étude de la Performance Solaire pour un Complexe Touristique Durable",                                                                               drive:'https://drive.google.com/drive/folders/1yowG-7Y8qdX4rY2xnroFlCuUB_i1gk45?usp=drive_link'},
+      {ordre:2, num:'37', nom:'LAKHOUIMA',    prenom:'Adam',            encadrant:'Prof. Asma MESKANI',             lieu:'Meridian Solar Marrakech',                titre:"Etude et installation des systèmes photovoltaïques",                                                                                               drive:'https://drive.google.com/drive/folders/1brQCSn0t_4VYgmHQz-D-9ZqvZ4MJRNpc?usp=drive_link'},
+      {ordre:3, num:'23', nom:'EZZERA',       prenom:'Salah Eddine',    encadrant:'Prof. Mohammed ER-RAKI',         lieu:'STT (société trésor technique)',          titre:"Installation et câblage des systèmes photovoltaïques",                                                                                             drive:'https://drive.google.com/drive/folders/1WQR8LhUJnXmuoNdaSCLckB7qILkfJ2TR?usp=drive_link'},
+      {ordre:4, num:'38', nom:'LAMGHARI',     prenom:'Kaoutar',         encadrant:'Prof. Asma MESKANI',             lieu:'Mindelec',                               titre:"Dimensionnement et conception d'une installation solaire de 30 kW hybride",                                                                        drive:'https://drive.google.com/drive/folders/1Hc1Hna87xDcGjdFBiijrz6MypRL6jMze?usp=drive_link'},
+      {ordre:5, num:'24', nom:'FAIK',         prenom:'Laila',           encadrant:'Prof. Mohammed ER-RAKI',         lieu:'Inma Etudes',                            titre:"Audit et optimisation énergétique d'un système d'air comprimé dans l'industrie avec intégration des énergies renouvelables",                      drive:'https://drive.google.com/drive/folders/1ls-YkgQ45ZTTe3elxbKP4wykPR65RoMc?usp=drive_link'},
+      {ordre:6, num:'39', nom:'MAHFOUDI',     prenom:'Mouad',           encadrant:'Prof. Asma MESKANI',             lieu:'Major Energy',                           titre:"Installation et câblage d'un système photovoltaïque hybride",                                                                                      drive:'https://drive.google.com/drive/folders/1G6d2kiBRuTWkLIYA-Cj2bzKr6zADUu1s?usp=drive_link'},
+      {ordre:7, num:'25', nom:'GHOUNBAZ',     prenom:'Yassine',         encadrant:'Prof. Mohammed ER-RAKI',         lieu:'Ashlep group',                           titre:"Installation des panneaux solaires, les systèmes photovoltaïques et thermique",                                                                    drive:'https://drive.google.com/drive/folders/1VBOLuByiQDtCaTpxzxvRcGb_Ldwsg99e?usp=drive_link'},
+      {ordre:8, num:'40', nom:'MAZAL',        prenom:'Bouchra',         encadrant:'Prof. Asma MESKANI',             lieu:'TAQAUnivers by ECOWATT',                 titre:"Pompage solaire",                                                                                                                                  drive:'https://drive.google.com/drive/folders/1ZWIYhVopsdu0pWRE0jbrK3u2uK9JCnla?usp=drive_link'},
+      {ordre:9, num:'26', nom:'HAMIOUI',      prenom:'Oualid',          encadrant:'Prof. Mohammed ER-RAKI',         lieu:'Uni megawatt',                           titre:"Installation et câblage des systèmes photovoltaïques",                                                                                             drive:'https://drive.google.com/drive/folders/1LwytkRI_-dqjPtw03xaH7L3-c6oQqfNr?usp=drive_link'},
+      {ordre:10,num:'41', nom:'OUASSAMO',     prenom:'Fatima Zahra',    encadrant:'Prof. Asma MESKANI',             lieu:"BIM'R",                                  titre:"Etude d'installation d'un système photovoltaïque",                                                                                                 drive:'https://drive.google.com/drive/folders/14j9rSgRZVeebg1tRlYz6q-kdtnYOBQNk?usp=drive_link'},
+      {ordre:11,num:'13', nom:'BOUSSAG',      prenom:'Azeddine',        encadrant:'Prof. Mohammed ER-RAKI',         lieu:'WATTUNEED SARL',                         titre:"Installation et câblage d'un système solaire photovoltaïque avec stockage par batteries",                                                         drive:'https://drive.google.com/drive/folders/1mTU8NcCQB5kbR33AWOY-Nvb_kNer_mWS?usp=drive_link'},
+      {ordre:12,num:'42', nom:'WIFAK',        prenom:'Ghita',           encadrant:'Prof. Asma MESKANI',             lieu:'BET AFRI ETUDE',                         titre:"Conception d'un système énergétique solaire intégré pour les bungalows et piscines d'une maison d'hôtes",                                        drive:'https://drive.google.com/drive/folders/1oxjLY6LLm3kumF-Nxz5RrLGic-9RpJzK?usp=drive_link'},
+      {ordre:13,num:'28', nom:'HEMACH',       prenom:'Fatima-Zohra',    encadrant:'Prof. Mohammed ER-RAKI',         lieu:'Ste Laaouina service sarl',              titre:"Conception d'un système automatisé de gestion de l'irrigation et de la fertilisation pour les oliviers",                                          drive:'https://drive.google.com/drive/folders/1QWOmRv5_7AI0vOmSFYSTuNCo_oXBQHIz?usp=drive_link'},
+      {ordre:14,num:'43', nom:'ZAIDOUNI',     prenom:'Maroua',          encadrant:'Prof. Asma MESKANI',             lieu:'BET AFRI ETUDE',                         titre:"Analyse du bilan énergétique du RDC d'un complexe touristique à Essaouira",                                                                      drive:'https://drive.google.com/drive/folders/1cF7CnnrbnGZdXznD-GnHQ_zAAsMzOqml?usp=drive_link'},
+    ]
+  },
+  {
+    id: 'jury2', color: '#82E0AA', salle: 'Salle 10',
+    etudiants: [
+      {ordre:1, num:'1',  nom:'AKZAZ',        prenom:'Yassine',         encadrant:'Prof. Fatima Zahra AMATOUL',     lieu:'OCP',                                    titre:"Groupe turbine alternateur",                                                                                                                       drive:'https://drive.google.com/drive/folders/160CU9CH25DSaehNUDYoZ2brZaArLby-U?usp=drive_link'},
+      {ordre:2, num:'8',  nom:'BELKAZIM',     prenom:'Wiame',           encadrant:'Prof. Abderrahim BAZGAOU',       lieu:'BET AFRI ETUDE',                         titre:"Étude et conception d'un système solaire hybride pour l'alimentation énergétique d'une pension touristique",                                      drive:'https://drive.google.com/drive/folders/1xpMvX3SNIIJ3jvhX9i6ECcvihj7mFQZQ?usp=drive_link'},
+      {ordre:3, num:'2',  nom:'AMAGROUD',     prenom:'Abderrahim',      encadrant:'Prof. Fatima Zahra AMATOUL',     lieu:'Agmapo',                                 titre:"Installation et câblage des systèmes photovoltaïques",                                                                                             drive:'https://drive.google.com/drive/folders/19-jqyLB9P6F8C9UTSal2E4uauY4WvEdM?usp=drive_link'},
+      {ordre:4, num:'9',  nom:'BENAISSA',     prenom:'Saif Eddine',     encadrant:'Prof. Abderrahim BAZGAOU',       lieu:'Agamine solar',                          titre:"Étude d'éclairage public solaire",                                                                                                                 drive:'https://drive.google.com/drive/folders/14_gQ507AvZvm11i0alDJhhT7ok7eNkqu?usp=drive_link'},
+      {ordre:5, num:'3',  nom:'AMMOR',        prenom:'Mohamed Yasser',  encadrant:'Prof. Fatima Zahra AMATOUL',     lieu:'Sté TECLECOM',                           titre:"Installation, mise en service et maintenance des systèmes photovoltaïques",                                                                        drive:'https://drive.google.com/drive/folders/1X7QvG49dWQvsql4r9-cQ_BZxw5bTIR2_?usp=drive_link'},
+      {ordre:6, num:'10', nom:'BENHIDA',      prenom:'Younes',          encadrant:'Prof. Abderrahim BAZGAOU',       lieu:'OCP',                                    titre:"Le variateur de vitesse et la résistance de la terre",                                                                                             drive:'https://drive.google.com/drive/folders/1ukRa3AehBjoMGGoxILMYm1iFAt3ScrKF?usp=drive_link'},
+      {ordre:7, num:'4',  nom:'AOUITI',       prenom:'Souhaib',         encadrant:'Prof. Fatima Zahra AMATOUL',     lieu:'IRRI MOD',                               titre:"Dimensionnement de deux installations photovoltaïques (on-grid et off-grid) et étude de l'influence des paramètres externes sur les performances d'un panneau solaire", drive:'https://drive.google.com/drive/folders/1SE_d5hWb-kC3rtLsVRIlaX-ufJ1yi7q5?usp=drive_link'},
+      {ordre:8, num:'11', nom:'BENKHOUY',     prenom:'Ahmed Amine',     encadrant:'Prof. Abderrahim BAZGAOU',       lieu:'OCP',                                    titre:"Etude du rendement et de performance d'une turbine à vapeur",                                                                                      drive:'https://drive.google.com/drive/folders/1l8mNrab400MqZcPYRVjTtZM9RyHAzzVU?usp=drive_link'},
+      {ordre:9, num:'5',  nom:'ARBAAI',       prenom:'Chayma',          encadrant:'Prof. Fatima Zahra AMATOUL',     lieu:'Energize',                               titre:"Conception et réalisation d'un Smart Home alimenté par énergie solaire avec système de contrôle intelligent et optimisation de la consommation énergétique", drive:'https://drive.google.com/drive/folders/1SWyPD7wruHRcSYPOx_M_YpTJGNStye9H?usp=drive_link'},
+      {ordre:10,num:'12', nom:'BOUAFOUD',     prenom:'Ayoub',           encadrant:'Prof. Abderrahim BAZGAOU',       lieu:'SOLART ENERGY',                          titre:"Installation, mise en service et maintenance des systèmes photovoltaïques",                                                                        drive:'https://drive.google.com/drive/folders/1hWsj8VUE4PzSlHUrsE4U-mqD2TXP8LjP?usp=drive_link'},
+      {ordre:11,num:'6',  nom:'AROUGAY',      prenom:'Amine',           encadrant:'Prof. Fatima Zahra AMATOUL',     lieu:'Ashlep group',                           titre:"Etude et Installation des panneaux solaires",                                                                                                      drive:'https://drive.google.com/drive/folders/1f9aWpDkJ-qmhtHDjY8-tHgVKR3-WO8BI?usp=drive_link'},
+      {ordre:12,num:'27', nom:'HAMIT',        prenom:'Bokhit Souleyman',encadrant:'Prof. Abderrahim BAZGAOU',       lieu:'CNESTEN',                                titre:"Développement d'un système intelligent de gestion énergétique et hydrique d'une serre PV",                                                       drive:'https://drive.google.com/drive/folders/1Xv_Gjg3X5w30_IBtcOySZtblIJZorgdF?usp=drive_link'},
+      {ordre:13,num:'7',  nom:'BELKAJJI',     prenom:'Othmane',         encadrant:'Prof. Fatima Zahra AMATOUL',     lieu:'WATTUNEED SARL',                         titre:"Réalisation pratique d'une installation photovoltaïque avec système de stockage par batteries",                                                  drive:'https://drive.google.com/drive/folders/1o5IMd-fisvEoQ_4UtfiDdtRLQHBxAH9s?usp=drive_link'},
+      {ordre:14,num:'14', nom:'CHBIKI',       prenom:'Imane',           encadrant:'Prof. Abderrahim BAZGAOU',       lieu:'GREEN POWER Morocco 1',                  titre:"Étude, modélisation et analyse de performance d'une centrale photovoltaïque en exploitation (cas GPM-1)",                                        drive:'https://drive.google.com/drive/folders/1MtO1yuZkVA0ymMOPqcY2E9XXb6Zy-jMf?usp=drive_link'},
+    ]
+  },
+  {
+    id: 'jury3', color: '#F8C471', salle: 'Salle 7',
+    etudiants: [
+      {ordre:1, num:'29', nom:'IBNOLKHATTAB', prenom:'Fahd',            encadrant:'Prof. Safae HASNAOUI',           lieu:'Sun Light Technology',                   titre:"Participation à l'étude et à l'installation des systèmes photovoltaïques",                                                                    drive:'https://drive.google.com/drive/folders/1bAqEQ9Prv5AVxQOhsDsWkeMbUFzaXZr7?usp=drive_link'},
+      {ordre:2, num:'15', nom:'CHEGHANNOU',   prenom:'Mohammed',        encadrant:'Prof. Ali BOUKHRISS',            lieu:"Station Météorologique d'Essaouira",      titre:"Étude de l'impact des conditions météorologiques sur la production énergétique basée sur le solaire et l'éolien",                               drive:'https://drive.google.com/drive/folders/1p1K7KxCVWhcx5m4kLclvQVPV2wZtSMtr?usp=drive_link'},
+      {ordre:3, num:'30', nom:'ID LAHCEN',    prenom:'Fatima',          encadrant:'Prof. Safae HASNAOUI',           lieu:'Dimadis',                                titre:"L'installation et câblage des systèmes photovoltaïques",                                                                                           drive:'https://drive.google.com/drive/folders/1ik19cR1kRhYrPYsr7_WtWM0P2-mb_1RK?usp=drive_link'},
+      {ordre:4, num:'16', nom:'EL AZZAB',     prenom:'Ouissal',         encadrant:'Prof. Ali BOUKHRISS',            lieu:'Ste Laaouina service sarl',              titre:"Automatisation d'un système d'irrigation et fertilisation des oliviers",                                                                           drive:'https://drive.google.com/drive/folders/1wzMc6C4ZNISsHG6-ZK9WtSrw4wnJJC4l?usp=drive_link'},
+      {ordre:5, num:'31', nom:'IGUERNANE',    prenom:'Khadija',         encadrant:'Prof. Safae HASNAOUI',           lieu:'Ste Cindimar',                           titre:"La réduction de la consommation énergétique des systèmes de climatisation",                                                                        drive:'https://drive.google.com/drive/folders/1fa5EsLSKPwvveoxibHReSbBG0FtpmCO_?usp=drive_link'},
+      {ordre:6, num:'17', nom:'EL FAHIM',     prenom:'Hicham',          encadrant:'Prof. Ali BOUKHRISS',            lieu:'Major Energy',                           titre:"L'installation et câblage des systèmes solaire photovoltaïque hybride",                                                                            drive:'https://drive.google.com/drive/folders/1rS0w23rQt1uB5B8WEpxQjZzji6-5Ns9o?usp=drive_link'},
+      {ordre:7, num:'32', nom:'JAMA',         prenom:'Hibat Allah',     encadrant:'Prof. Safae HASNAOUI',           lieu:'Bouzinergie Foton',                      titre:"Étude et installation des systèmes photovoltaïques au sein de Bouzinergie Foton Marrakech",                                                       drive:'https://drive.google.com/drive/folders/1VejBQxLfpKd3saFA9j9f6tMTziB3Askg?usp=drive_link'},
+      {ordre:8, num:'18', nom:'EL MOUTAOUAKIL',prenom:'Kawtar',         encadrant:'Prof. Ali BOUKHRISS',            lieu:'Ste MOGANOUR TRAVAUX SARL',              titre:"Étude et installation d'un système photovoltaïque pour le pompage d'eau potable en milieu rural",                                               drive:'https://drive.google.com/drive/folders/1wZbWUGOwx9lQ_L1orQ0sKyJefGccPWCC?usp=drive_link'},
+      {ordre:9, num:'33', nom:'KAAL',         prenom:'Zineb',           encadrant:'Prof. Safae HASNAOUI',           lieu:'STE CONSAMAR SARL',                      titre:"Dimensionnement et optimisation d'un système de pompage photovoltaïque pour l'irrigation dans la région d'Essaouira",                           drive:'https://drive.google.com/drive/folders/1wUtdY1zWbWk-GmfpUIMG7ikVABfGnqrw?usp=drive_link'},
+      {ordre:10,num:'19', nom:'ELJAOUHARY',   prenom:'Khalid',          encadrant:'Prof. Ali BOUKHRISS',            lieu:'OCP',                                    titre:"Optimisation de la consommation électrique",                                                                                                       drive:'https://drive.google.com/drive/folders/1_lAOjrjF023jP-yg0uCfu-Xf-TQFAWQX?usp=drive_link'},
+      {ordre:11,num:'34', nom:'LABRISSI',     prenom:'Hamza',           encadrant:'Prof. Safae HASNAOUI',           lieu:'OCP',                                    titre:"Étude et fiabilisation du variateur de vitesse MT k6301 de l'unité lavage des gaz de PPII MC",                                                  drive:'https://drive.google.com/drive/folders/1uFVc0UnCeaJ-O6ufaXoCTVyeUsm-0zPN?usp=drive_link'},
+      {ordre:12,num:'20', nom:'ELMESSAOUDY',  prenom:'Imane',           encadrant:'Prof. Ali BOUKHRISS',            lieu:'SRM MS',                                 titre:"Dimensionnement d'une installation photovoltaïque raccordée au réseau sans injection",                                                         drive:'https://drive.google.com/drive/folders/1YYOy__QAgBYFxbRJ7PuiEF-EM5y7vOwe?usp=drive_link'},
+      {ordre:13,num:'35', nom:'LAGBAH',       prenom:'Hasna',           encadrant:'Prof. Safae HASNAOUI',           lieu:'OCP',                                    titre:"Évaluation de GTA dans le cadre d'une centrale thermique",                                                                                         drive:'https://drive.google.com/drive/folders/1WgjTWNQGMF1WveVmQQ7jNcfj7MNqu8tr?usp=drive_link'},
+      {ordre:14,num:'21', nom:'ENNAIR',       prenom:'Salma',           encadrant:'Prof. Ali BOUKHRISS',            lieu:'SMR',                                    titre:"Etude de l'intégration de l'énergie solaire dans l'alimentation des services auxiliaires aux postes sources de la SRM",                         drive:'https://drive.google.com/drive/folders/1FuYO0rH6MOuYCoC6MWItedwg3v2kAqK_?usp=drive_link'},
+      {ordre:15,num:'36', nom:'LAKHOUAD',     prenom:'Mohammed',        encadrant:'Prof. Safae HASNAOUI',           lieu:'NAZIHA EQUIPEMENT',                      titre:"Étude et installation des systèmes photovoltaïques au région de Safi",                                                                           drive:'https://drive.google.com/drive/folders/1RUK98karHAJxO_2OM67mwkxtaxjxvzTc?usp=drive_link'},
+    ]
+  }
+];
+
+var COLORS = [
+  '#E8A87C','#85C1E9','#82E0AA','#F1948A','#BB8FCE',
+  '#F8C471','#76D7C4','#F0B27A','#AED6F1','#A9DFBF',
+  '#FAD7A0','#A3E4D7','#D7BDE2','#A9CCE3','#26C6DA',
+  '#C0CA33','#AB47BC','#EF5350','#42A5F5','#66BB6A',
+  '#FFA726','#EC407A','#26A69A','#7E57C2','#D4AC0D',
+  '#1ABC9C','#E74C3C','#3498DB','#E67E22','#9B59B6',
+  '#2ECC71','#F39C12','#E91E63','#00BCD4','#FF5722',
+  '#607D8B','#CDDC39','#FF9800','#9C27B0','#4CAF50',
+  '#F44336','#FF6B6B','#5C6BC0'
+];
+
+var allStudents = [];
+JURY.forEach(function(jury) {
+  jury.etudiants.forEach(function(e, i) {
+    allStudents.push({ s: e, jury: jury, colorIdx: JURY.indexOf(jury)*14 + i });
+  });
+});
+
+function ini(n,p) { return (n[0]+(p?p[0]:'')).toUpperCase(); }
+
+function createCard(e, jury, colorIdx) {
+  var c = COLORS[colorIdx % COLORS.length];
+  var div = document.createElement('div');
+  div.className = 'card';
+  div.innerHTML =
+    '<div class="card-bar" style="background:'+c+'"></div>'+
+    '<div class="card-top-row">'+
+      '<span class="passage-num">Passage n° '+e.ordre+'</span>'+
+      '<span class="encadrant-badge" style="background:'+c+'">'+e.encadrant.replace('Prof. ','')+'</span>'+
+    '</div>'+
+    '<div class="card-top">'+
+      '<div class="avatar" style="background:'+c+'">'+ini(e.nom,e.prenom)+'</div>'+
+      '<div>'+
+        '<div class="card-name">'+e.nom+' '+e.prenom+'</div>'+
+        '<div class="card-num-insc" style="color:'+c+'">N° '+e.num+'</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="pfe-label">Titre du stage</div>'+
+    '<div class="pfe-text">'+e.titre+'</div>'+
+    '<div class="card-foot">'+
+      '<span class="foot-hint">Appuyer pour accéder au rapport</span>'+
+      '<span class="qr-dot" style="background:'+c+'">QR</span>'+
+    '</div>';
+  div.addEventListener('click', function(){ openModal(e, jury.color); });
+  div.addEventListener('touchend', function(ev){ ev.preventDefault(); openModal(e, jury.color); });
+  return div;
+}
+
+function buildAllGrids() {
+  JURY.forEach(function(jury, ji) {
+    var grid = document.getElementById('grid-'+jury.id);
+    grid.innerHTML = '';
+    jury.etudiants.forEach(function(e, i) {
+      grid.appendChild(createCard(e, jury, ji*15 + i));
+    });
+  });
+  document.getElementById('countLine').style.display = 'none';
+  document.getElementById('jury1-section').style.display = '';
+  document.getElementById('jury2-section').style.display = '';
+  document.getElementById('jury3-section').style.display = '';
+}
+
+function runSearch(q) {
+  if (!q) { buildAllGrids(); return; }
+  q = q.toLowerCase();
+  var cl = document.getElementById('countLine');
+  var total = 0;
+  JURY.forEach(function(jury, ji) {
+    var grid = document.getElementById('grid-'+jury.id);
+    var section = document.getElementById(jury.id+'-section');
+    var filtered = jury.etudiants.filter(function(e) {
+      return e.nom.toLowerCase().indexOf(q)>-1 ||
+             e.prenom.toLowerCase().indexOf(q)>-1 ||
+             e.titre.toLowerCase().indexOf(q)>-1 ||
+             e.encadrant.toLowerCase().indexOf(q)>-1 ||
+             e.num.toLowerCase().indexOf(q)>-1;
+    });
+    grid.innerHTML = '';
+    if (filtered.length) {
+      section.style.display = '';
+      filtered.forEach(function(e, i) {
+        grid.appendChild(createCard(e, jury, ji*15 + jury.etudiants.indexOf(e)));
+      });
+    } else {
+      section.style.display = 'none';
+    }
+    total += filtered.length;
+  });
+  cl.style.display = '';
+  cl.innerHTML = '<strong>'+total+'</strong> résultat'+(total>1?'s':'');
+}
+
+document.getElementById('searchInput').addEventListener('input', function(){ runSearch(this.value.trim()); });
+
+function openModal(e, juryColor) {
+  document.getElementById('mBar').style.background = juryColor;
+  var av = document.getElementById('mAv');
+  av.textContent = ini(e.nom, e.prenom);
+  av.style.background = juryColor;
+  document.getElementById('mName').textContent = e.nom+' '+e.prenom;
+  var meta = document.getElementById('mMeta');
+  meta.textContent = 'N° '+e.num+' — Passage n° '+e.ordre;
+  meta.style.color = juryColor;
+  document.getElementById('mEncadrant').textContent = titreEncadrant(e.encadrant)+' : '+e.encadrant;
+  document.getElementById('mLieu').textContent = e.lieu;
+  var pfe = document.getElementById('mPfe');
+  pfe.textContent = e.titre;
+  pfe.style.borderLeftColor = juryColor;
+  var btn = document.getElementById('mLink');
+  btn.href = e.drive;
+  btn.style.background = juryColor;
+  document.getElementById('qrFrame').style.borderColor = juryColor;
+  var qrBox = document.getElementById('qrTarget');
+  qrBox.innerHTML = '';
+  new QRCode(qrBox,{text:e.drive,width:150,height:150,colorDark:'#2a2a2a',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.H});
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function hideModal() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('closeBtn').addEventListener('click', hideModal);
+document.getElementById('overlay').addEventListener('click', function(e){ if(e.target===this) hideModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') hideModal(); });
+
+window.onload = function(){ buildAllGrids(); };
+</script>
+</body>
+</html>
